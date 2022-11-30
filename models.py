@@ -13,8 +13,8 @@ class User(db.Model):
     registered_on = db.Column(db.DateTime, nullable=False)
     admin = db.Column(db.Boolean, nullable=False, default=False)
 
-    def __init__(self,nombre = None,email = None,telefono = None,password = None,admin = None) -> None:  #Acomodar para que deje de ser true.
-        self.nombre = nombre #Hay que ver como hacer que podamos iniciar sesion sin enviar todos los datos del objeto.
+    def __init__(self,nombre = None,email = None,telefono = None,password = None,admin = None) -> None: 
+        self.nombre = nombre 
         self.email = email
         self.telefono = telefono
         self.password=bcrypt.generate_password_hash(password, BaseConfig.BCRYPT_LOG_ROUND).decode()
