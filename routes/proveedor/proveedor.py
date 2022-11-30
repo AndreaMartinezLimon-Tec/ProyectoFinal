@@ -38,6 +38,9 @@ def getProveedor(usuario):
     else:
         return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
 
+
+
+
 @appproveedor.route('/proveedores/editar/<int:id>', methods=['GET', 'POST'])
 @tokenCheck
 def editarProveedor(usuario, id):

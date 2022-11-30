@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../static/css/styleindex.css">
+    <title>Clientes</title>
+</head>
+<body>
+    <div class="topnav">
+        <a href="{{url_for('inicio')}}">🚩 Inicio</a>
+        <a href="{{url_for('appuser.login')}}">👨‍👧 Inicio de Sesion </a>
+        <a href="{{url_for('appuser.registro')}}">📔 Registrar usuario </a>
+        <a href=""> 🧸 Juguetes </a>
+        <a href="{{url_for('appproveedor.getProveedor')}}"> 📦 Proveedores </a>
+        <a href="{{url_for('appuser.getUsers')}}"> 🔐 Admin</a>
+        </div>
+    <div class="body">
+        <h1>Registro de usuarios</h1>
+        <div>
+            <a href="{{ url_for('inicio') }}">Inicio</a>
+            <a href="{{ url_for('appuser.registro') }}">Agregar</a>
+        </br>
+        </div>
+
+        <div>
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Registrado</th>
+                        <th>Admin</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for usuario in usuarios %}
+                    <tr>
+                        <td>{{usuario.id}}</td>
+                        <td>{{usuario.nombre}}</td>
+                        <td>{{usuario.email}}</td>
+                        <td>{{usuario.password}}</td>
+                        <td>{{usuario.registered_on}}</td>
+                        <td>{{usuario.admin}}</td>
+                        <td><a href="usuario/editar//{{usuario.id}}">Editar</a></td>
+                        <td><a href="">Eliminar</a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+</body>
