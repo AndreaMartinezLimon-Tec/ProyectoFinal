@@ -62,7 +62,7 @@ class Juguete(db.Model):
     costo = db.Column(db.Integer, nullable=False)
     cantidad = db.Column(db.Integer, nullable=False)
     proveedor_id = db.Column(db.Integer, db.ForeignKey('proveedor.id'), nullable=False)
-    proveedor = db.relationship('Proveedor',cascade="all, delete-orphan", back_populates = "juguetes")
+    proveedor = db.relationship('Proveedor', back_populates = "juguetes")
 
     def __init__(self,nombre,costo,cantidad,proveedor_id) -> None:
         self.nombre = nombre
