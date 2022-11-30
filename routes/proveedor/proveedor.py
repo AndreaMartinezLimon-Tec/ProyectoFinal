@@ -53,3 +53,13 @@ def editarProveedor(usuario, id):
         return render_template('proveedor/editarproveedor.html', forma=proveedorForma,mensaje=mensaje)
     else:
         return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+
+@appproveedor.route('/proveedores/eliminar/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def eliminarproveedor(usuario, id):
+    if usuario['admin']:
+        proveedor = Proveedor.query.get_or_404(id)
+        db.session.delete(proveedor)
+        db.session.commit()
+        return redirect(url_for('appproveedor.getProveedor'))
+    return jsonify({"mensaje": "no eres admin"})
