@@ -1,6 +1,7 @@
 from models import User
 from functools import wraps
-from flask import request,jsonify
+from flask import request, jsonify
+from app import session
 
 def ObtenerInfo(token):
     if token:
@@ -28,7 +29,8 @@ def tokenCheck(f):
         token = None
         if 'token' in request.headers:
             token = request.headers['token']
-        
+        elif 'token' in session:
+            token = session['token']
         if not token:
             return jsonify({'mensaje':'Token no encontrado'})
         try:

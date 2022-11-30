@@ -17,3 +17,9 @@ class UserFormRegistro(FlaskForm):
     telefono = StringField('telefono', validators=[DataRequired()])
     password = StringField('password', validators=[DataRequired()])
     enviar = SubmitField('enviar')
+
+class ProveedorForm(FlaskForm):
+    nombre = StringField('nombre', validators=[DataRequired()])
+    telefono = StringField('telefono', validators=[DataRequired()])
+    marca = StringField('marca', validators=[DataRequired()])
+    enviar = SubmitField('enviar')
