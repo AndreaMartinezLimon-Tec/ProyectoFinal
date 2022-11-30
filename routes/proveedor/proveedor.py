@@ -65,4 +65,4 @@ def eliminarproveedor(usuario, id):
         db.session.delete(proveedor)
         db.session.commit()
         return redirect(url_for('appproveedor.getProveedor'))
-    return jsonify({"mensaje": "no eres admin"})
+    return jsonify({"mensaje": "Es necesario tener permisos de administrador"})

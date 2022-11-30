@@ -41,3 +41,30 @@ def getJuguete(usuario):
         return render_template('juguete/juguete.html', juguetes=juguetes)
     else:
         return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+
+
+@appjuguete.route('/juguetes/editar/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def editarjuguete(usuario, id):
+    mensaje = "Editar juguete"
+    if usuario['admin']:
+        juguete = Juguete.query.get_or_404(id)
+        jugueteForma = JugueteForm(obj=juguete)
+        if request.method == "POST":
+            if jugueteForma.validate_on_submit():
+                jugueteForma.populate_obj(juguete)
+                db.session.commit()
+                return redirect(url_for('appjuguete.getJuguete'))
+        return render_template('juguete/editarjuguete.html', forma=jugueteForma,mensaje=mensaje)
+    else:
+        return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+
+@appjuguete.route('/juguetes/eliminar/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def eliminarjuguete(usuario, id):
+    if usuario['admin']:
+        juguete = Juguete.query.get_or_404(id)
+        db.session.delete(juguete)
+        db.session.commit()
+        return redirect(url_for('appjuguete.getJuguete'))
+    return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
