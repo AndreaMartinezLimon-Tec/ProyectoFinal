@@ -12,22 +12,18 @@
         <a href="{{url_for('inicio')}}">🚩 Inicio</a>
         <a href="{{url_for('appuser.login')}}">👨‍👧 Inicio de Sesion </a>
         <a href="{{url_for('appuser.registro')}}">📔 Registrar usuario </a>
-        <a href=""> 🧸 Juguetes </a>
+        <a href="{{url_for('appjuguete.getJuguete')}}"> 🧸 Juguetes </a>
         <a href="{{url_for('appproveedor.getProveedor')}}"> 📦 Proveedores </a>
         <a href="{{url_for('appuser.getUsers')}}"> 🔐 Admin</a>
-<<<<<<< HEAD
-      </div>
-=======
-        </div>
->>>>>>> 48404e3fdc3eb2046d754fd5891be4f9f9fefb79
+    </div>
     <div class="body">
-        <h1>Listado de proveedores</h1>
+
+        <h1>Registro de proveedores</h1>
         <div>
             <a href="{{ url_for('inicio') }}">Inicio</a>
             <a href="{{ url_for('appproveedor.registrop') }}">Agregar</a>
         </br>
         </div>
-
         <div>
             <table class="styled-table">
                 <thead>
