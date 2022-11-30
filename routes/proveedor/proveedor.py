@@ -37,3 +37,19 @@ def getProveedor(usuario):
         return render_template('proveedor/proveedor.html', proveedores=proveedores)
     else:
         return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+
+@appproveedor.route('/proveedores/editar/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def editarProveedor(usuario, id):
+    mensaje = "Editar proveedor"
+    if usuario['admin']:
+        proveedor = Proveedor.query.get_or_404(id)
+        proveedorForma = ProveedorForm(obj=proveedor)
+        if request.method == "POST":
+            if proveedorForma.validate_on_submit():
+                proveedorForma.populate_obj(proveedor)
+                db.session.commit()
+                return redirect(url_for('appproveedor.getProveedor'))
+        return render_template('proveedor/editarproveedor.html', forma=proveedorForma,mensaje=mensaje)
+    else:
+        return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
