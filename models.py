@@ -48,7 +48,7 @@ class Proveedor(db.Model):
     nombre = db.Column(db.String(255), unique=True, nullable=False)
     telefono = db.Column(db.String(255), nullable=False)
     marca = db.Column(db.String(255), nullable=False)
-    juguetes = db.relationship("Juguete", back_populates = "proveedor")
+    juguetes = db.relationship("Juguete",cascade="all, delete-orphan", back_populates = "proveedor")
 
     def __init__(self,nombre,telefono,marca) -> None:
         self.nombre = nombre
@@ -62,7 +62,7 @@ class Juguete(db.Model):
     costo = db.Column(db.Integer, nullable=False)
     cantidad = db.Column(db.Integer, nullable=False)
     proveedor_id = db.Column(db.Integer, db.ForeignKey('proveedor.id'), nullable=False)
-    proveedor = db.relationship('Proveedor', back_populates = "juguetes")
+    proveedor = db.relationship('Proveedor',cascade="all, delete-orphan", back_populates = "juguetes")
 
     def __init__(self,nombre,costo,cantidad,proveedor_id) -> None:
         self.nombre = nombre
