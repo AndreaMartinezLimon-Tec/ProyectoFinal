@@ -1,0 +1,120 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    height: 100%;
+	background: #f3e0e2;
+	font-family: 'Segoe UI';
+}
+	p {
+		font-size: 20px;
+	}
+
+  .topnav {
+	overflow: hidden;
+	background: linear-gradient(to right, #FF4B2B , #FF416C);
+	height: 70px;
+	width: auto;
+	color: #f3e0e2;
+    border-radius: 5px;
+  }
+  
+  .topnav a {
+	float: left;
+	color: white;
+	text-align: center;
+	padding: 16px 16px;
+	text-decoration: none;
+	font-size: 20px;
+	height: 70px;
+  }
+  
+  .topnav a:hover {
+	background-color: #ddd;
+  }
+
+.contenedor{
+    display: flex;
+    width: auto;
+    height: auto;
+    flex-direction: row;
+    justify-content:space-evenly;
+    align-items: stretch;
+    background-color: #f3e0e2;
+}
+
+.caja{
+    background-color: #f3e0e2;
+    width: 90%;
+    height: auto;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 20px;
+	
+}
+
+image{
+    border-radius: 10px;
+	width: auto;
+	height: auto;
+	padding: 10px;
+}
+#datos{
+    opacity: 0.8;
+    height: 500px !important;
+}
+
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 350px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+    background-color: #FF4B2B;
+    color: white;
+    text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+    padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+    border-bottom: 1px solid white;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+    background-color: white;
+}
+
+.styled-table tbody tr:last-of-type {
+    border-bottom: 2px solid #FF4B2B;
+}
+
+.styled-table tbody tr.active-row {
+    font-weight: bold;
+    color: #FF4B2B;
+}
+
+
+@media screen and (max-width: 1200px) {
+    .contenedor{
+        width: fit-content;
+        height: fit-content;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .contenedor{
+        width: fit-content;
+        height: fit-content;
+    }  
+}
+
+  

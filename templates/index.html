@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Inicio -Jugueteria </title>
+    <link rel="stylesheet" href="../static/css/styleindex.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <div class="topnav">
+        <a href="{{url_for('inicio')}}">🚩 Inicio</a>
+        <a href="{{url_for('appuser.login')}}">👨‍👧 Inicio de Sesion </a>
+        <a href="{{url_for('appuser.registro')}}">📔 Registrar usuario </a>
+        <a href=""> 🧸 Juguetes </a>
+        <a href=""> 📦 Proveedores </a>
+        <a href=""> 🔐 Admin </a>
+      </div>
+    </div>
+    <div class="contenedor">
+        <div class="caja">
+            <p>Algunas de nuestras Marcas ✨:</p>
+            <table class="styled-table">            
+                <thead>
+                    <tr>
+                        <th>Juguetes</th>
+                        <th>Marcas</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <th scope="col">Balones </th>
+                    <td>Adidas</td>
+                </tr>
+                <tr>
+                    <th scope="row">Bloques de Construccion</th>
+                    <td>Lego</td>
+                </tr>
+                <tr>
+                    <th scope="row">Figuras de Accion</th>
+                    <td>Mattel</td>
+                </tr>
+                <tr>
+                    <th scope="row">Peluches</th>
+                    <td>Fisher Price</td>
+                </tr>
+                <tr>
+                    <th scope="row">Juegos de Mesa</th>
+                    <td>Hasbro</td>
+                </tr>
+                <caption>Repartiendo Sonrisas por el Mundo 😊🎈</caption> 
+            </table>
+        </div>
+        <img src="../static/images/Portada.png" alt="">
+    </div>
+</body>
+</html>
