@@ -80,6 +80,17 @@ def editarUsuario(usuario, id):
                 consultaForma.populate_obj(usuario)
                 db.session.commit()
                 return redirect(url_for('appuser.getUsers'))
-        return render_template('proveedor/editarusuario.html', forma=consultaForma,mensaje=mensaje)
+        return render_template('usuario/editarusuario.html', forma=consultaForma,mensaje=mensaje)
     else:
         return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+    
+    
+@appuser.route('/usuario/eliminar/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def eliminar(usuario, id):
+    if usuario['admin']:
+        usuario = User.query.get_or_404(id)
+        db.session.delete(usuario)
+        db.session.commit()
+        return redirect(url_for('appuser.getUsers'))
+    return jsonify({"mensaje": "no eres admin"})
