@@ -31,3 +31,10 @@ class UserFormObtener(FlaskForm):
     telefono = StringField('telefono', validators=[DataRequired()])
     password = StringField('password', validators=[DataRequired()])
     enviar = SubmitField('enviar')
+
+class JugueteForm(FlaskForm):
+    nombre = StringField('nombre', validators=[DataRequired()])
+    costo = IntegerField('costo', validators=[DataRequired()])
+    cantidad = StringField('cantidad', validators=[DataRequired()])
+    proveedor_id = StringField('proveedor_id', validators=[DataRequired()])
+    enviar = SubmitField('enviar')
