@@ -38,3 +38,9 @@ class JugueteForm(FlaskForm):
     cantidad = StringField('cantidad', validators=[DataRequired()])
     proveedor_id = StringField('proveedor_id', validators=[DataRequired()])
     enviar = SubmitField('enviar')
+
+class ImageForm(FlaskForm):
+    type = StringField('type', validators=[DataRequired()])
+    imagen = FileField('imagen', validators=[DataRequired()])
+    juguete_id = SelectField('juguete_id',choices=[],coerce=int,validators=[DataRequired()])
+    enviar = SubmitField('enviar')

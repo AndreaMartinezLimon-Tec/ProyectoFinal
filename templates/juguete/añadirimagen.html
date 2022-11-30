@@ -1,0 +1,31 @@
+{% extends 'bootstrap/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block styles %}
+{{ super() }}
+<link rel="stylesheet" href="/static/css/stylelogin.css">
+{% endblock %}
+{% block title %}
+Juguete Imagen
+{% endblock %}
+
+{% block content %}
+
+<div class="topnav">
+  <a href="{{url_for('inicio')}}">🚩 Inicio</a>
+  <a href="{{url_for('appuser.login')}}">👨‍👧 Inicio de Sesion </a>
+  <a href="{{url_for('appuser.registro')}}">📔 Registrar usuario </a>
+  <a href="{{url_for('appjuguete.getJuguete')}}"> 🧸 Juguetes </a>
+  <a href="{{url_for('appproveedor.getProveedor')}}"> 📦 Proveedores </a>
+  <a href="{{url_for('appuser.getUsers')}}"> 🔐 Admin</a>
+  </div>
+    <h1 class="">{{mensaje}}</h1>
+<div class="contenedor">
+    <div class="caja">
+      <div class="col-md-10 col-lg-8 mx-lg-auto mx-md-auto">
+        {{ wtf.quick_form(forma) }}
+      </div>
+  </div>
+</div>
+
+{% endblock %}
