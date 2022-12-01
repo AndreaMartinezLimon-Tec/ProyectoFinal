@@ -1,9 +1,12 @@
 from flask import Blueprint, request, Flask, request, url_for, render_template, redirect, jsonify, make_response
 from sqlalchemy import exc
-from models import User,Proveedor,Juguete
+from models import Proveedor,Juguete,Juguete_Imagen
 from app import db, bcrypt
 from auth import tokenCheck
 from forms import JugueteForm
+import pdfkit
+from fpdf import FPDF
+config = pdfkit.configuration(wkhtmltopdf="C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe")
 appjuguete = Blueprint('appjuguete',__name__,template_folder="template")
 
 @appjuguete.route('/agregarjuguetes', methods=['POST','GET'])
@@ -68,3 +71,31 @@ def eliminarjuguete(usuario, id):
         db.session.commit()
         return redirect(url_for('appjuguete.getJuguete'))
     return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+
+@appjuguete.route('/juguetes/detalle/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def usuariodown(usuario, id):
+    if 'admin' in usuario:
+        juguete = Juguete.query.get_or_404(id)
+        searchImage = Juguete_Imagen.query.filter_by(juguete_id=id).first()
+        
+        imag = searchImage.renderate_date
+        data = searchImage.data
+        imagen = data
+        
+        rendered = render_template('juguete/detallejuguete.html', juguete=juguete, imagen=imag, id=juguete.id)
+        
+        pdf = FPDF()
+        pdf.add_page()
+        pdf.set_font('Arial', 'B', 16)
+        pdf.cell(40,10,f'Nombre: {juguete.nombre}')
+        pdf.cell(40,10,txt=f'Costo: {juguete.costo.__str__()}')
+        #pdf.image(imagen, 30, 30, w = 70, h = 40, type = 'jpg')
+        pdf.output("archi.pdf")
+        
+        response = make_response(pdf.output(dest='s'))
+        #response = make_response(pdf)
+        response.headers["Content-Type"] = 'application/pdf'
+        response.headers["Content-Disposition"] = 'inline; filename=output.pdf'
+        return response
+    return jsonify({"mensaje": "no encontrado"})
