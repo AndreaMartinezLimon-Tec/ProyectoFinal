@@ -40,7 +40,7 @@ def registro():
     registroForma = UserFormRegistro()
     if request.method == "POST":
         if registroForma.validate_on_submit():
-            user = {"nombre":registroForma.nombre.data,"email": registroForma.email.data,"telefono":registroForma.telefono.data,"admin":registroForma.admin.data,"password": registroForma.password.data}
+            user = {"nombre":registroForma.nombre.data,"email": registroForma.email.data,"telefono":registroForma.telefono.data,"admin":0,"password": registroForma.password.data}
             userExist = User.query.filter_by(email=user['email']).first()
             if not userExist:
                 usuario = User(nombre=user['nombre'], email=user['email'], telefono=user["telefono"], password=user["password"],admin=user["admin"])
