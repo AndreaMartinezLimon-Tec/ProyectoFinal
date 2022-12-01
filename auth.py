@@ -1,6 +1,6 @@
 from models import User
 from functools import wraps
-from flask import request, jsonify
+from flask import request, jsonify,redirect,url_for,render_template
 from app import session
 
 def ObtenerInfo(token):
@@ -32,13 +32,13 @@ def tokenCheck(f):
         elif 'token' in session:
             token = session['token']
         if not token:
-            return jsonify({'mensaje':'Token no encontrado'})
+            return redirect(url_for('appuser.login'))
         try:
             info = ObtenerInfo(token)
             print(info)
             if info['status']=="Fallido":
-                return jsonify({'mensaje':'token invalido'})
+                return redirect(url_for('appuser.login'))
         except:
-            return jsonify({'mensaje':'token invalido'})
+            return redirect(url_for('appuser.login'))
         return f(info['data'],*args,**kwargs)
     return verificar

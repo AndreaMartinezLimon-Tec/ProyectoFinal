@@ -93,4 +93,4 @@ def eliminar(usuario, id):
         db.session.delete(usuario)
         db.session.commit()
         return redirect(url_for('appuser.getUsers'))
-    return jsonify({"mensaje": "no eres admin"})
+    return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
