@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../static/css/styleindex.css">
+    <link rel="stylesheet" href="/static/css/stylelogin.css">
     <title>Clientes</title>
 </head>
 <body>
@@ -17,20 +17,24 @@
         <a href="{{url_for('appuser.getUsers')}}"> 🔐 Admin</a>
       </div>
     <div class="body">
-        <h1>Listado de juguetes</h1>
+        <h1>Información detallada</h1>
         <div>
-            <a href="{{ url_for('inicio') }}">Inicio</a>
-            <a href="{{ url_for('appjuguete.registro') }}">Agregar</a>
+            <a href="{{ url_for('appjuguete.getJuguete') }}">Regresar</a>
         </br>
         </div>
 
         <div>
-            {{juguete.id}}
-            {{juguete.nombre}}
-            {{juguete.costo}}
-            {{juguete.cantidad}}
-            {{juguete.proveedor_id}}
-
+            <h3>ID: {{juguete.id}}</h3>
+            <h3>Nombre del producto: {{juguete.nombre}}</h3>
+            <h3>Costo: {{juguete.costo}}</h3>
+            <h3>Cantidad en inventario: {{juguete.cantidad}}</h3>
+            <h3>Proveedor: {{proveedor}}</h3>
+            <h3>Imagen del producto:</h3>
+            <img src="data:image/jpg;base64,{{imagen}}" alt="Imagen" width="100">
+            <div>
+                <a href="/juguetes/detalle/descarga//{{juguete.id}}">Descargar</a>
+            </br>
+            </div>
         </div>
     </div>
     

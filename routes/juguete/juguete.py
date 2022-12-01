@@ -71,23 +71,34 @@ def eliminarjuguete(usuario, id):
 
 @appjuguete.route('/juguetes/detalle/<int:id>', methods=['GET', 'POST'])
 @tokenCheck
-def usuariodown(usuario, id):
+def detalleusuario(usuario, id):
     if 'admin' in usuario:
         juguete = Juguete.query.get_or_404(id)
         searchImage = Juguete_Imagen.query.filter_by(juguete_id=id).first()
+        imag = searchImage.renderate_date
+        searchProveedor= Proveedor.query.filter_by(id=juguete.proveedor_id).first()
+        pro = searchProveedor.nombre
+        print(pro)
+        return render_template('juguete/detallejuguete.html', juguete=juguete, imagen=imag, proveedor=pro)
+    return jsonify({"mensaje": "no eres admin"})
+
+@appjuguete.route('/juguetes/detalle/descarga/<int:id>', methods=['GET', 'POST'])
+@tokenCheck
+def descarga(usuario, id):
+    if 'admin' in usuario:
+        juguete = Juguete.query.get_or_404(id)
+        searchImage = Juguete_Imagen.query.filter_by(juguete_id=id).first()
+        searchProveedor= Proveedor.query.filter_by(id=juguete.proveedor_id).first()
+        pro = searchProveedor.nombre
         
         imag = searchImage.renderate_date
         data = searchImage.data
         imagen = data
-        
-        rendered = render_template('juguete/detallejuguete.html', juguete=juguete, imagen=imag, id=juguete.id)
-        
         pdf = FPDF()
         pdf.add_page()
         pdf.set_font('Arial', 'B', 16)
-        pdf.cell(40,10,f'Nombre: {juguete.nombre}')
-        pdf.cell(40,10,txt=f'Costo: {juguete.costo.__str__()}')
-        #pdf.image(imagen, 30, 30, w = 70, h = 40, type = 'jpg')
+        pdf.multi_cell(70,10,f'Nombre: {juguete.nombre}\nCosto: {juguete.costo.__str__()}\nCantidad: {juguete.cantidad.__str__()}\nProveedor: {pro}')
+        #pdf.image(imagen, 100, 30, w = 70, h = 40, type = 'JPG')
         pdf.output("archi.pdf")
         
         response = make_response(pdf.output(dest='s'))
