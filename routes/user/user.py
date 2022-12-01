@@ -29,7 +29,7 @@ def login():
                     #print(responseObj)
                     session['token'] = auth_token
                     return render_template('index.html')
-                pop.replace = "Datos incorrectos"
+                pop = "Datos incorrectos"
                 return render_template('login.html', forma=usuarioForma, mensaje=mensaje, pop=pop)
             mensaje = "Usuario Creado"
     return render_template('login.html', forma=usuarioForma, mensaje=mensaje, pop=pop)

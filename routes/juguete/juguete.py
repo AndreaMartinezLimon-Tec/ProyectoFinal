@@ -38,12 +38,9 @@ def registro(usuario):
 @appjuguete.route('/juguetes', methods=["GET"])
 @tokenCheck
 def getJuguete(usuario):
-    if usuario['admin']:
-        output=[]
-        juguetes = Juguete.query.all()
-        return render_template('juguete/juguete.html', juguetes=juguetes)
-    else:
-        return jsonify({"mensaje": "Es necesario tener permisos de administrador"})
+    output=[]
+    juguetes = Juguete.query.all()
+    return render_template('juguete/juguete.html', juguetes=juguetes)
 
 
 @appjuguete.route('/juguetes/editar/<int:id>', methods=['GET', 'POST'])
